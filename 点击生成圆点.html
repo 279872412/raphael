@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="raphael.js" type="text/javascript"></script>
+
+</head>
+<style>
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<body>
+<div id="paper" style="width: 100%;height: 100%;background-color: #1c8942">
+    <script>
+        var paper = Raphael("paper", 1200, 600);
+        var circles = [];
+        var lines = [];
+        //        画圆函数。
+        function drawCircle(x, y) {
+            var circleColor = Raphael.getColor();
+            circles[circles.length] = paper.circle(x, y, 10).attr({"fill": circleColor, "stroke": circleColor});
+        }
+        //        获取坐标的函数
+        function getMouse(event) {
+            var e = event || window.event;
+            return {'x': e.clientX, 'y': e.clientY}
+        }
+        function drawLine(el1, el2) {
+
+            var line = paper.path;
+            var x1 = el1.attrs.cx,
+                    y1 = el1.attrs.cy,
+                    x4 = el2.attrs.cx,
+                    y4 = el2.attrs.cy,
+                    x2 = el1.attrs.cx + (el2.attrs.cx - el1.attrs.cx) * 0.4,
+                    y2 = y1,
+                    x3 = el2.attrs.cx - (el2.attrs.cx - el1.attrs.cx) * 0.4,
+                    y3 = y4;
+            var path = "M" + x1 + "," + y1 + "," + "C" + x2 + "," + y2 + "," + x3 + "," + y3 + "," + x4 + "," + y4;
+
+            lines[lines.length] = paper.path(path).attr({"stroke": Raphael.getColor(), "stroke-width": 2});
+        }
+
+        //        点击生成圆形，并且连线
+     /*   document.onclick = function () {
+//            点击画圆。
+            var el = circles.length;
+//..................................................每两个进行连线
+            /!*    if (el % 2 == 1){
+             drawCircle(getMouse().x, getMouse().y);
+             drawLine(circles[el-1],circles[el]);
+
+             }else {
+             drawCircle(getMouse().x, getMouse().y);
+
+             }*!/
+//            ......................所有的相互相连
+            if (el >= 1) {
+                drawCircle(getMouse().x, getMouse().y);
+                for (var i = 0; i < el; i++) {
+                    drawLine(circles[i], circles[circles.length - 1])
+                }
+            } else {
+                drawCircle(getMouse().x, getMouse().y);
+            }
+        };*/
+
+
+        setInterval(function () {
+            if(circles.length>0){
+                drawCircle(parseInt(Math.random() * 1200), parseInt(Math.random() * 600));
+                for (var i = 0; i < circles.length; i++) {
+                    drawLine(circles[i], circles[circles.length - 1])
+                }
+            }else{
+                drawCircle(parseInt(Math.random() * 1200), parseInt(Math.random() * 600));
+
+            }
+
+
+
+        }, 1000)
+
+    </script>
+</div>
+
+</body>
+</html>

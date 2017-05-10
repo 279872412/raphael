@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>相关函数2</title>
+</head>
+<style>
+    #paper {
+        background-color: #2fe26d;
+    }
+</style>
+<script type="text/javascript" src="raphael.js"></script>
+<body>
+<div id="paper">
+    <script>
+        var paper = Raphael("paper", 800, 600);
+        var circle = paper.circle(200, 200, 100);
+        circle.attr({
+            "stroke": "blue",
+            "stroke-width": 6,
+            "fill": "red"
+        });
+        //必须点在上面，当为圆圈时，必须点在圆圈上才可以被执行。
+        /*       circle.click(function () {
+         circle.attr({
+         "r": circle.attrs.r + 20
+         })
+         });*/
+        //     。。。。。。。。。。。。。。。。。。。一个很重要的api。。。。。。。。。。。。。   node用来做DOM对象的引用，当对象用了node就可以使用原生的js来操作了。
+  /*      circle.node.onclick = function () {
+            console.log(circle.pause());
+             circle.attr({
+                "r": circle.attrs.r + 20
+            })
+        };*/
+        /*        circle.mouseover(function(){
+         circle.attr({
+         "cx" : circle.attrs.cx+10
+         })
+         })*/
+//        。。。。。。。。paper  绘制的画布的内部引用，常用来插件和元素扩展。
+        circle.paper.circle(10, 10, 20).attr({"fill": "yellow"}).click(function(){
+// .................................           resume()可以恢复因为pause()函数停止的动画。
+            circle.resume()
+        });
+// 。。。。。。。。动画       animate（ob，ms，str,callback）第一个是最终的样式，所需时间，动画的样式，回掉函数。
+        circle.animate({r:300},2000, "easing");
+
+        circle.node.onclick = function () {
+//....................remove()函数移除元素。
+//            circle.remove();
+//        。。。。。。。。。。。。。。。。。。。。。。。。。。    pause（）可以停止动画的进行。
+            console.log(circle.pause());
+        };
+
+
+    </script>
+</div>
+</body>
+</html>

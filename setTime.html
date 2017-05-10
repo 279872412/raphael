@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="raphael.js"></script>
+<body>
+<div id="paper" style="background-color: aqua">
+    <script>
+        var paper = Raphael("paper", 1200, 400);
+        var circle = paper.circle(60, 60, 20);
+        circle.attr({
+            "fill": "green"
+        });
+        circle.setTime(anim);
+        var anim = Raphael.animation({cx: 600, cy: 400}, 4000);
+        //        setTimeout(anmi,ms)从anmi动画ms的地方开始动画。只是设置并不启动若anmi的时间和ms相同的时候，则动画直接进行到最终位置。
+//                console.log(circle.setTime(anim, 1000));
+//。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。status(anim,0.5);第二个数值为0-1，设置动画开始的位置。
+//        console.log(circle.status(anim, 0.5));
+        circle.status(anim, 0.5);
+//两者的位置不一样，效果也不一样，主要的是在动画完成的时间上有差别。
+        circle.animate(anim);
+//        circle.status(anim, 0.5);
+
+//        清除画布上的元素。
+paper.clear()
+    </script>
+
+</div>
+</body>
+</html>

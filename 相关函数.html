@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="raphael.js"></script>
+<body>
+<div id="paper">
+    <script>
+        var paper = Raphael("paper", 800, 600);
+        var c = paper.path("M10 10L100 100 L200 100 L300 200");
+        //        var c = paper.path("M80.70655218467436,80.70655218467436C91.96972236037254,91.96972236037254,100,100,100,100C100,100,109.53808426856995,100,122.72280915349256,100");
+        var d = paper.path(c.getSubpath(100, 150));
+
+        var circle = paper.circle(100, 100, 50);
+        circle.attr({
+            "stroke": "green",
+            "stroke-width": 2
+        });
+        c.attr({
+            "stroke": "red",
+            "stroke-width": 3
+        });
+        d.attr({
+            "stroke": "blue",
+            "stroke-width": 6
+        });
+        //..........................................。。。。。。。。。。。。.glow设置元素的光晕效果，参数为对象，且都是可选。注意：光晕效果不会因为元素属性的改变儿改变
+        circle.glow({width: 12, fill: true, opacity: 0.3, offsetx: 5, offsety: 0, color: "red"});
+        c.glow({width: 12, fill: false, opacity: 0.3, offsetx: 5, offsety: 0, color: "green"});
+        //。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。        circle.hide()隐藏circle的函数。;
+        /*  console.log(c.insertAfter());
+         console.log(c.insertBefore());*/
+        circle.hide();
+
+        var rect = paper.rect(400, 400, 50, 80);
+        rect.attr({
+            "fill": "pink"
+        });
+        //..............................。。。。。。。。。。。。..rect.isPointInside(x,y),查看(x,y)点是否在rect内，若在则返回TRUE，不在则返回FALSE。
+        console.log(rect.isPointInside(420, 420));
+//  ...................mousedown鼠标按下时，mouseout鼠标抬起时，mousemove鼠标移动时。
+        rect.mousedown(mousedown);
+        function mousedown() {
+            circle.show();
+        }
+        rect.mouseout(mouseout);
+        function mouseout() {
+            circle.hide();
+        }
+
+        rect.mousemove(mousemove);
+        function mousemove(){
+            rect.attr({
+                "fill":"black"
+            })
+        }
+        //.......................................rect.hover(f_in,f_out);移入时执行的函数。里面还有两个可选的参数。
+        // f_in为移入的函数，f_out为移出时的函数。且可以返回对象。
+
+        rect.hover(f_in, f_out);
+        console.log(rect.hover());
+        function f_in() {
+            rect.attr({
+                "width": 100,
+                "height": 100
+            })
+        }
+        function f_out() {
+            rect.attr({
+                "width": 50,
+                "height": 20
+            })
+        }
+        //        .....................................rect.id每次刷新都会不同，是随机生成的。监听的时候很重要的。
+        console.log(rect.id);
+
+
+        /*   {
+         width number
+         光晕大小，默认是10
+         fill boolean
+         是否填充，默认是false
+         opacity number
+         透明度，默认是0.5
+         offsetx number
+         横向偏移，默认为0
+         offsety number
+         垂直偏移，默认为0
+         color string
+         发光颜色，默认为black
+         }*/
+        //。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。获取长度为200位置的位置信息和切线角度
+        console.log(c.getPointAtLength(200));
+        //        ..........。。。。。。。。。。。。。。。。。。。。。。。。。。。。。获取100 150段的一段路径的字符串，
+        console.log(c.getSubpath(100, 150));
+        //       。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。getTotallength() 获取线条c的长度
+        console.log(c.getTotalLength());
+
+        
+
+    </script>
+</div>
+</body>
+</html>

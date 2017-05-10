@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多个画布</title>
+</head>
+
+<style>
+    #paper1 {
+        background-color: #1c8942;
+    }
+
+    #paper2 {
+        background-color: #e29138;
+    }
+
+    #paper3 {
+        background-color: #7798e2;
+    }
+
+    #paper4 {
+        background-color: #e069e2;
+    }
+
+    #paper5 {
+        background-color: #49e2e2;
+    }
+</style>
+<script type="text/javascript" src="raphael.js"></script>
+
+
+<body>
+<!--<div id="paper1">
+    <script>
+        var paper1 = Raphael("paper1", 400, 100);
+        var circle1 = paper1.circle(20, 20, 20);
+        circle1.attr({
+            "fill": "red",
+            "stroke-width": 0
+        })
+
+
+    </script>
+</div>-->
+<div id="paper2">
+    <script>
+        var paper2 = Raphael("paper2", 400, 100);
+
+        var rect2 = paper2.rect(20, 20, 80, 40);
+        rect2.attr({
+            "fill": "green"
+        });
+        var circle2 = paper2.circle(60, 30, 30).attr({"fill": "purple"});
+        var rect3 = paper2.rect(200, 20, 40, 80).attr({
+            "fill": "pink",
+            "stroke-width": 0
+        });
+        //      .......................  paper.bottom 指的是该画布上面的第一个元素，这个元素是被压倒最下面的。   作用域都是同一个画布。
+        paper2.bottom.click(function () {
+            alert("bottom")
+        });
+        //      ...............................  paper.top 指的是该画布上面的最后一个元素，这个元素是被放到最上面的。
+        paper2.top.click(function () {
+            alert("top")
+        });
+
+        //    .......................... 遍历画布上的元素   paper.forEach(callback,thisArg);,用法如下，为画布上的每一元素执行函数，第二个参数可以不要。
+
+        paper2.forEach(function (el) {
+            el.attr({
+//                "fill": "yellow"
+            })
+
+        });
+        rect3.attr({
+            "fill": "pink"
+        });
+        //    ........................................    el.id获取元素的id
+        var _id = rect3.id;
+        // ...........................................paper.getById(num)返回id为num的元素。
+        paper2.getById(_id).attr({
+            "fill": "black"
+        });
+
+
+        circle2.click(function () {
+            console.log(getMousePos());
+        });
+        function getMousePos(event) {
+            var e = event || window.event;
+            return {'x': e.screenX, 'y': e.screenY}
+        }
+
+        //        paper2.getElementByPoint（x，y）指定位置上的最上层元素。（（（（好像只对第一个画布上的元素有效果。））））
+        // paper2.getElementsByPoint（x，y）指定位置上所有元素的集合，
+
+        console.log(paper2.getElementByPoint(40, 40));
+        console.log(paper2.getElementsByPoint(40, 40));
+    </script>
+</div>
+
+
+<div id="paper3">
+
+    <script>
+        var paper3 = Raphael("paper3", 600, 80);
+        var circle3 = paper3.circle(30, 30, 20);//此处的坐标为相对于画布的坐标。
+        //        paper3.remove()  删除画布，但是并没有从DOM结构中删除，而是把其高度改为了零。
+        paper3.remove();
+
+    </script>
+</div>
+<div id="paper4">
+    <script>
+        var paper4 = Raphael("paper4", 200, 80);
+
+        //    paper4.set() 创建类元素组对象，可以保存或一次操作多个元素。即相当于给多个元素添加一个类，便于操作这些元素。
+
+        var st = paper4.set();
+        st.push(paper4.circle(40, 40, 30), paper4.circle(100, 40, 20));
+        st.attr({"fill": "black"});
+
+        //        paper4.setStart();   开始创建类元素对象。，
+
+
+        paper4.setStart();
+        paper4.circle(200, 40, 20);
+        paper4.circle(300, 40, 20)
+        ;
+        paper4.circle(400, 40, 20)
+        ;
+        paper4.circle(500, 40, 20);
+
+        var sts = paper4.setFinish();
+        //        var sts = paper4.setFinish();    创建类元素对象结束，与 paper4.setStart(); 之间的元素都属于该类的，两者合用相当于paper.ste().
+
+        sts.attr({"fill": "pink"});
+
+        //        paper4.setSize(600, 80);  改变画布的尺寸。。。
+
+        paper4.setSize(600, 80);
+    </script>
+
+
+</div>
+<div id="paper5">
+    <script>
+
+        var paper5 = Raphael("paper5", 100, 100);
+        var circle5 = paper5.circle(50, 50, 60);
+        var circle6 = paper5.circle(100, 100, 30);
+
+
+        //        paper5.setViewBox(50,50,100,100,false);  画布视图范围，前两个是坐标，后两个是宽高，第五个暂时不清楚其作用， （先在画布上画出元素，然后根据该函数进行裁剪，最后再排列。
+
+        paper5.setViewBox(50, 50, 100, 100, false);
+    </script>
+</div>
+
+<div id="paper6" style="background-color: #e069e2; font-size: 26px">
+    <script>
+
+        var paper6 = Raphael("paper6", 600, 100);
+        //     paper6.text(10,10,"绘制文本是什么鬼？");  前两个为起始点的坐标，后一个是字符串，。
+
+        var Text = paper6.text(100, 10, "绘制文本是什么鬼？");
+        Text.attr({
+            "fill": "red",
+            "stroke-width": 2,
+            "stroke": "yellow"
+        });
+
+    </script>
+</div>
+<div id="paper7" style="background-color: #9c9ee2; font-size: 26px">
+    <script>
+
+        var paper7 = Raphael("paper7", 600, 100);
+
+        //        paper.add(json);  导入json数据，可以生成相应的元素。
+        var dd = paper7.add([
+            {
+                type: "circle",
+                cx: 10,
+                cy: 10,
+                r: 5
+            },
+            {
+                x: 10,
+                type: "rect",
+                y: 10,
+                width: 10,
+                height: 10,
+                fill: "#fc0"
+            }]);
+
+        //        创建画布的另一种方法，Raphael（[])   加数组，第一个函数可以为id，，后面的为宽高，json数据。后面加一组json数据，可以生成相应的元素。json格式如上面的类型。
+        //        var set =Raphael(["paper7",320,200, {    type:"rect",x:10,y:10,width:25, height:25,stroke:"#f00" }, {type:"text",x:30, y:40, text:"Dump" }]);
+
+
+        //        var paper7 = Raphael(10,10, 600, 100); 又一种创建画布的方法，前两个为画布的起点坐标。
+
+
+        //        Raphael.angle(x1,y1,x2,y2)     是以x轴的负半轴为起点，顺时针计算的，即当（10,10,0,0）时返回45度。当（10,10,20,10）返回的是180度。
+        var getAngle = Raphael.angle(100, 100, 50, 50);
+        console.log(getAngle);
+        var getAngle2 = Raphael.angle(0, 10, 20, 10, 20, 100);
+        console.log(getAngle2);
+    </script>
+</div>
+
+<div id="paper8" style="background-color: #e069e2">
+    <script>
+        var paper8 = Raphael("paper8", 600, 200);
+
+        //       。。。。。。。。。 Raphael.bezierBBox(0, 0, 10, 25, 30, 40, 60, 100)  返回，贝塞尔曲线的边框的数据。
+        console.log(Raphael.bezierBBox(0, 0, 10, 25, 30, 40, 60, 100));
+
+        //        Raphael.color("red") 参数为字符串，返回解析颜色的数据对象。
+        console.log(Raphael.color("cornflowerblue"));
+//        Raphael.deg(弧度)   弧度转角度的函数。
+        console.log(Raphael.deg(3.14));
+
+
+    </script>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>raphael</title>
+    <script type="text/javascript" src="raphael.js"></script>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+<div id="paper">
+    <script>
+        //创建一个画布
+//     var paper = new Raphael("paper", 500, 500);
+        //画圆
+  /*         var circle = paper.circle(50, 50, 40);
+        circle.attr({
+            "stroke": "red",
+            "stroke-width": 4,
+            "fill": "blue"
+        });
+        circle.mousedown(function () {
+            circle.attr("fill", "red");
+        });
+        circle.mouseup(function () {
+            this.attr("fill", "blue");
+        });
+        //或者写法
+        circle.attr("opacity", 0.5);
+        //画圆角方形
+        var rect = paper.rect(90, 90, 50, 50, 10);
+        rect.attr({
+            "stroke": "red",
+            "stroke-width": 4,
+            "fill": "blue"
+        });
+        rect.attr("opacity", 0.5);
+        rect.mousemove(function () {
+            rect.attr("fill", "gray");
+        });
+        rect.mouseout(function () {
+            this.attr("fill", "blue");
+        });
+    */
+        var paper = new Raphael("paper", 1000, 800);
+        // 设置效果的曲线类型
+        var c = paper.circle(50, 50, 40);
+        c.attr({
+            "fill":"#233"
+        });
+//        Raphael.animation(params, ms, [easing], [callback])
+ /*       params:参数；
+        ms：毫秒-数字
+        easing：速度-linear线性；
+        “linear”线性
+        “<” or “easeIn” or “ease-in”加快
+        “>” or “easeOut” or “ease-out”减慢
+        “<>” or “easeInOut” or “ease-in-out”快慢快
+        “backIn” or “back-in”先弹回在出发
+        “backOut” or “back-out”先出发，再弹回一点
+        “elastic”弹性
+        “bounce”弹跳*/
+        function animate() {
+            var ms = 1000;
+            var easing = 'easeInOut';
+
+            c.animate({
+                cx: 50 + Math.random() * 300,               //圆心x坐标
+                cy: 50 + Math.random() * 600,//圆心y坐标
+                fill:"#eee",
+            }, ms, easing, function(){
+                setTimeout(animate, 1000);
+            });
+        }
+
+        setTimeout(animate, 1000);
+    </script>
+</div>
+</body>
+</html>

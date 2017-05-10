@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改变属性</title>
+    <script type="text/javascript" src="raphael.js"></script>
+</head>
+<body>
+<div id="paper">
+    <script>
+        var paper = new Raphael("paper",600,400);
+        var circle = paper.circle(300,200,100);
+        circle.attr({
+            "stroke":"#333",
+            "stroke-width":6,
+            "fill":"red",
+            cx:0//x轴位置
+        });
+setTimeout(function(){
+    circle.attr({
+        cx:200,//x位置
+        cy:100,//y位置
+        r:20,
+        "stroke":"red",
+        "stroke-width":3,
+        "fill":"#333"
+    })
+},1000);
+        // 绘制箭头
+        var c = paper.path("M10 10L100 10").attr({
+            'arrow-end':'classic-wide-long',
+            stroke: "#fff",
+            "stroke-width": 2
+        });
+
+        var c = paper.path("M10 30L100 30").attr({
+            'arrow-end':'block-wide-long',
+            stroke: "#f00",
+            "stroke-width": 2
+        });
+
+        var c = paper.path("M10 50L100 50").attr({
+            'arrow-start':'open-wide-long',
+            stroke: "#ff0",
+            "stroke-width": 2
+        });
+
+        var c = paper.path("M10 70L100 70").attr({
+            'arrow-end':'oval-wide-long',
+            stroke: "#0f0",
+            "stroke-width": 2
+        });
+
+        var c = paper.path("M10 90L100 90").attr({
+            'arrow-end':'diamond-wide-long',
+            stroke: "#0ff",
+            "stroke-width": 2
+        });
+        var c = paper.path("M100 100 v90").attr({
+
+            stroke: "#0ff",
+            "stroke-width": 2
+        });
+        var c = paper.path("M100 100 h90").attr({
+
+            stroke: "#0ff",
+            "stroke-width": 2
+        });
+        var c = paper.path("M100 100 C100 100 120 70 140 160 C140 160 160 100 180 200 Z ").attr({
+
+            stroke: "#0ff",
+            "stroke-width": 2
+        });
+        var c = paper.path("M200 200 S200 200 270 300").attr({
+
+            stroke: "#0ff",
+            "stroke-width": 2
+        });
+    </script>
+</div>
+</body>
+</html>

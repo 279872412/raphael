@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prev</title>
+</head>
+<script src="raphael.js"></script>
+<body>
+<div id="paper">
+    <script>
+        var paper = Raphael("paper", 100, 100);
+        var circle = paper.circle(50, 50, 40);
+        circle.attr({
+            "fill": "blue"
+        });
+
+        setInterval(function () {
+//            scale(sx,sy,x,y)sx为横向伸缩值，sy纵向的伸缩值，x，y为伸缩中心的坐标
+            circle.scale(1 + 0.1, 0.9, 10, 50);
+//            console.log();
+//            console.log(circle.scale.sx);
+        }, 1000)
+
+    </script>
+</div>
+
+<div id="paper1">
+    <script>
+        var paper1 = Raphael("paper1", 400, 200);
+        var circle = paper1.circle(50, 50, 40);
+
+        circle.attr({
+            "fill": "red"
+        });
+        var rect = paper1.rect(100, 100, 40, 20);
+        rect.attr({
+            "fill": "pink"
+        });
+        rect.click(function () {
+//         。。。。。。。。。。。。。   prev指的是同一个画布中的上一个图画。
+            rect.prev.attr({
+                "fill": rect.attrs.fill
+            })
+        });
+        circle.click(function () {
+            circle.next.attr({
+                "fill": circle.attrs.fill
+            })
+        });
+        var rect1 = paper1.rect(200, 200, 60, 30);
+
+        rect1.attr({
+            "fill": "pink"
+        });
+        setInterval(function () {
+//            rotate(deg,x,y)旋转的角度，deg角度，x，y为旋转中心。
+            rect1.rotate(5, 200, 200)
+        }, 20)
+
+        paper1.forEach()
+    </script>
+</div>
+
+
+</body>
+</html>

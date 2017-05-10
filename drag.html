@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+    <script type="text/javascript" src="raphael.js"></script>
+
+</head>
+<body>
+<div id="paper" style="background-color: aquamarine">
+    <script>
+        var paper = Raphael("paper", 500, 500);
+        var circle = paper.circle(100, 100, 100);
+        var rect = paper.rect(400, 400, 40, 40);
+        rect.attr({
+            "fill": "red"
+        });
+        circle.attr({
+            "stroke": "blue",
+            "fill": "red",
+            "stroke-width": 3
+        });
+
+
+//        。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。drag函数的应用
+        circle.drag(move, start, end);
+        function move() {
+            getMousePos();
+            circle.attr({
+                "cx": getMousePos().x,
+                "cy": getMousePos().y
+//                "r":circle.attrs.r -1
+
+            });
+//            。。。。。。。。。。。。。。。。。。。。。。。。。。。。。getBBox（true）获取变化之前图形的边界
+            console.log(circle.getBBox());
+//    console.log("vBBe");
+//    console.log(circle);
+//    getMousePos();
+
+        }
+//。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。获取鼠标的位置
+        function getMousePos(event) {
+            var e = event || window.event;
+//            console.log(e.screenX);
+            return {'x': e.screenX, 'y': e.screenY}
+        }
+        function start() {
+            console.log("start");
+        }
+        function end() {
+            console.log("end");
+        }
+    </script>
+</div>
+
+</body>
+</html>

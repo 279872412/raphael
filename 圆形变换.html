@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圆形变幻</title>
+</head>
+<script src="raphael.js"></script>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+        background-color: #1c8942;
+    }
+    #paper{
+        width: 800px;
+        height: 600px;
+        border: solid 2px black;
+        margin: 0 auto;
+    }
+
+</style>
+<body>
+<div id="paper">
+
+    <script>
+var paper = Raphael("paper",800,600);
+   var circle1 =     paper.circle(400,300,100);
+        circle1.attr(
+                {
+                    "fill":"black"
+                }
+        );
+
+circle1.click(function(){
+
+   this .animate({"cx":400,"cy":300,"r":100, "fill":"blue","stroke-width":80,"stroke":Raphael.getColor()},1000,"easing")
+})
+    </script>
+
+</div>
+
+
+
+</body>
+</html>

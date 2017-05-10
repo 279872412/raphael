@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="raphael.js"></script>
+    <script src="jquery.min.js"></script>
+
+    <style>
+
+        body {
+            background: #333;
+            color: #fff;
+            font: 300 100.1% "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+        }
+        #holder {
+            height: 480px;
+            left: 50%;
+            margin: -240px 0 0 -320px;
+            position: absolute;
+            top: 50%;
+            width: 640px;
+        }
+        #copy {
+            bottom: 0;
+            font: 300 .7em "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+            position: absolute;
+            right: 1em;
+            text-align: right;
+        }
+        #copy a {
+            color: #fff;
+        }
+    </style>
+</head>
+< <body>
+<div id="holder">
+    <p>More than just text</p>
+</div>
+<p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p>
+<script>
+    Raphael(function () {
+        var hldr = document.getElementById("holder"),
+                text = hldr.innerText.replace(/^\s+|\s+$/g, "");
+        hldr.innerHTML = "";
+        var R = Raphael("holder", 640, 480),
+                txt = [],
+                attr = {font: "50px Helvetica", opacity: 0.5};
+
+//        font:"字体大小，字体类型"必须包括这两个属性，且大小要带单位
+        txt[0] = R.text(320, 240, text).attr(attr).attr({fill: "#0f0"});
+        txt[1] = R.text(320, 240, text).attr(attr).attr({fill: "#f00"});
+        txt[2] = R.text(320, 240, text).attr(attr).attr({fill: "#00f"});
+        var mouse = null, rot = 0;
+        document.onmousemove = function (e) {
+            e = e || event;
+            if (mouse == null) {
+                mouse = e.clientX;
+                return;
+            }
+            rot += e.clientX - mouse;
+            txt[0].attr({transform: "r" + rot});
+            txt[1].attr({transform: "r" + rot / 1.5});
+            txt[2].attr({transform: "r" + rot / 2});
+            mouse = e.pageX;
+            R.safari();
+        };
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建画布</title>
+    <script type="text/javascript" src="raphael.js"></script>
+</head>
+<body>
+<div id="papr">
+    <script>
+//        DOM元素必须有id，把脚本放在该元素内。
+//var 画布name=new Raphael("idname",width,height);创建画布；
+//var  图案name=画布name.circle(x,y,r);画圆；rect画矩形。
+// 图案name.attr({"":"","":""}),改变图案的样式。
+
+
+        var paper= new Raphael("papr",500,500);
+
+        var circle = paper.circle(350,350,100);
+        circle.attr({
+            "stroke":"blue",
+            "stroke-width":8,
+            "fill":"red"
+        });
+        var rect = paper.rect(400,400,40,60);
+        rect.attr({
+            "stroke":"#333",
+            "stroke-width":6,
+            "fill":"black"
+        })
+    </script>
+</div>
+</body>
+</html>

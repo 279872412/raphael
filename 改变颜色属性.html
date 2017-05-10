@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改变颜色的属性</title>
+
+    <script type="text/javascript" src="raphael.js"></script>
+</head>
+<body>
+<div id="paper">
+    <script>
+        var paper = new Raphael("paper",600,400);
+        var rect = paper.rect(100,100,100,40);
+        rect.attr({
+            "stroke":"#333",
+            "stroke-width":6
+        });
+        function changeColor(){
+           setInterval(function(){
+               rect.attr({
+                   "fill":Raphael.hsb(Math.random(),1,1)
+//                   //hsb(色度，饱和度，亮度)
+               })
+           },500)
+        }
+
+
+
+
+        changeColor();
+
+
+    </script>
+</div>
+</body>
+</html>

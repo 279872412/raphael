@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>raphael的显隐函数</title>
+    <script type="text/javascript" src="raphael.js"></script>
+</head>
+<body>
+<div id="paper">
+    <script>
+        <!---------------------------------------------------------------------创建相应的画布-->
+        var paper = new Raphael("paper", 600, 600);
+//       ------------------------------------------------------------------------ 在画布上画圆
+        var circle = paper.circle(50, 50, 25);
+
+        //--------------------------------------------------------------------e.attr({})设置e的相应属性
+        circle.attr({
+            "stroke": "red",
+            "stroke-width": 6,
+            "fill": "blue", "r": 40,
+            "cx":60,
+            "cy": 60
+        });
+//        --------------------------------------------------------------------e.data("name","xiaoming")给你e添加数据，可以添加多个，但是要分开添加。
+        circle.data("name","xiaoming");
+        circle.data("age",18);
+//        --------------------------------------------------------------------e.data("name")获取e的对应的键的值。
+        console.log(circle.data("name"));
+        console.log(circle.data("age"));
+
+        function show() {
+            circle.show();//raphael的内置函数。
+//            --------------------------------------------------------e.attrs.r获取元素对应的属性值
+            var d = circle.attrs.r;
+
+            setTimeout(function () {
+                hide()
+            }, 1000)
+        }
+        function hide() {
+//           ------------------------------------------------------------------- e.hide函数的用法和jq一样
+            circle.hide();//raphael的内置函数。
+            setTimeout(function () {
+                show();//现在写的函数。
+            }, 1000)
+        }
+        hide();
+//-----------------------------------------------------------------------------------e.click(function(){})的用法和js一样，
+        circle.click(function(){
+
+//            ------------------------------------------------------------------------e.clone()的用法:将e的所有属性复制下来。
+//          circle.clone();
+            circle.attr({
+                "r": circle.attrs.r+10,
+                "cx":  circle.attrs.cx + 10,
+                "cy":circle.attrs.cy + 10
+            });
+//            hide();
+        });
+//        --------------------------------------------------------------------------------e.dblclick(function(){})双击e调用函数。
+        circle.dblclick(function(){
+           alert(333)
+        });
+
+
+        //        console.log(circle);
+
+
+        /* rect.hide();
+         setTimeout(function () {
+         circle.hide();
+         rect.show();
+         }, 1000);*/
+    </script>
+</div>
+</body>
+</html>

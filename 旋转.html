@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转</title>
+    <script src="raphael.js">
+    </script>
+    <script src="jquery.min.js"></script>
+</head>
+<style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        background-color: #333333;
+    }
+
+    #val {
+        width: 200px;
+        line-height: 24px;
+        font-size: 20px;
+        color: white;
+        background-color: #333333;
+    }
+
+    #paper {
+        width: 800px;
+        height: 600px;
+        margin: 0 auto;
+        background-color: #8f8f8f;
+    }
+</style>
+<div id="paper">
+    <script>
+
+        var paper = Raphael("paper", 800, 600);
+        var tex1 = paper.text(300, 300, "我是小猫咪，小猫咪").attr({
+            "font": "40px 黑体",
+            "stroke-width": 2,
+            "fill": "red",
+            "stroke": "none"
+        });
+        var tex2 = paper.text(300, 300, "我是小猫咪，小猫咪").attr({
+            "font": "40px 黑体",
+            "stroke-width": 2,
+            "fill": "blue",
+            "stroke": "none"
+        });
+        var tex3 = paper.text(300, 300, "我是小猫咪，小猫咪").attr({
+            "font": "40px 黑体",
+            "stroke-width": 2,
+            "fill": "green",
+            "stroke": "none"
+        });
+        var mov = 0;
+        $(document).mousemove(function (e) {
+            var e = e || event;
+            mov = e.clientX;
+            tex1.attr({"transform": "r" + mov});
+            tex2.attr({"transform": "r" + mov/1.2});
+            tex3.attr({"transform": "r" + mov/1.5});
+        });
+
+    </script>
+</div>
+
+<body>
+
+</body>
+</html>

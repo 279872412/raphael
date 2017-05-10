@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Raphaël · Reflection</title>
+    <script src="raphael.js"></script>
+    <style>
+        body {
+            background: #333;
+            color: #fff;
+            font: 300 100.1% "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+        }
+        #copy a {
+            color: #fff;
+        }
+        body {
+            background: #fff;
+            color: #000;
+            font: 100.1% "Lucida Grande", Lucida, Verdana, sans-serif;
+        }
+        #holder {
+            height: 480px;
+            left: 50%;
+            margin: 0 0 0 -320px;
+            position: absolute;
+            top: 0;
+            width: 640px;
+        }
+        #copy {
+            bottom: 0;
+            font-size: .7em;
+            position: absolute;
+            right: 1em;
+            text-align: right;
+        }
+    </style>
+
+    <style media="screen">
+        body {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+<div id="holder">
+    <img id="photo" src="bd.jpg" width="320" height="240" alt="Test" />
+</div>
+<script>Raphael(function () {
+    var img = document.getElementById("photo");
+    img.style.display = "none";
+    var r = Raphael("holder", 600, 540);
+
+    r.image(img.src, 140, 140, 320, 240);
+
+    r.image(img.src, 140, 380, 320, 240).attr({
+//        transform:"t10,10r30,100,100s2,2,100,100"    t为移动到位置，r为旋转度数在坐标，s为x轴缩放，y轴的缩放，在位置处。
+//       ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！1 当s1-1时表示镜像缩放。
+
+
+        transform: "s1-1",
+        opacity:.5
+    });
+    r.rect(0, 380, 600, 160).attr({
+        fill: "90-#333-#333",
+//        fill: "red",
+        stroke: "none",
+        "fill-opacity": 0.2
+    });
+
+
+});
+</script>
+</body>
+</html>

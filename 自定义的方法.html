@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义方法</title>
+</head>
+
+
+<script src="raphael.js"></script>
+<body>
+<div id="paper">
+
+    <script>
+        var paper = Raphael("paper", 600, 400);
+//        var paper1 = Raphael("paper", 700, 400);
+//        Raphael.el.name =function (){ this.attr}自定义后的函数可以直接使用，不会影响元素集合。
+
+
+        Raphael.el.red = function () {
+            this.attr({"fill": "red"})
+        };
+        var circle = paper.circle(200, 200, 100).red();
+//        Raphael.getColor() 每次返回一个色谱中的颜色，当重复时，调用Raphael.getColor.reset();色谱复位函数，
+
+        var circle1 = paper.circle(400, 200, 100);
+        circle1.attr({
+            "fill":Raphael.getColor()
+        });
+
+        var circle4 = paper.circle(500, 200, 100);
+        circle4.attr({
+            "fill":Raphael.getColor()
+        });
+
+        var circle2 = paper.circle(400, 200, 40);
+        circle2.attr({
+            "fill":Raphael.getColor()
+        });
+//
+        var circle3 = paper.circle(400, 200, 10);
+        circle3.attr({
+            "fill":Raphael.getColor()
+        });
+//        console.log(Raphael.isBBoxIntersect(paper, paper1));
+    </script>
+
+
+</div>
+
+
+</body>
+</html>

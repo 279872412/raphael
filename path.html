@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>path</title>
+    <script type="text/javascript" src="raphael.js"></script>
+</head>
+<body>
+<div id="paper">
+    <script>
+
+        var paper = new Raphael("paper",1200,600);
+        var arrow = paper.path("M400 100 h140");
+        arrow.attr({
+            "arrow-end":"classic-wide-long",//箭型,形状，宽度，长度
+            "stroke":"red",
+            "stroke-width":2
+        });
+        var arrow1 = paper.path("M400 120 H100");
+        arrow1.attr({
+            "arrow-start":"block-wide-long",//实心箭头
+            "stroke":"yellow",
+            "stroke-width":6
+        });
+        var arrow2 = paper.path("M400 140 h140");
+        arrow2.attr({
+            "arrow-end":"open-wide-long",//空心箭头
+            "stroke":"#f00",
+            "stroke-width":3
+
+        });
+        var arrow3 = paper.path("M400 180 h140");
+        arrow3.attr({
+            "arrow-start":"oval-wide-long"//圆点
+
+        });
+        var arrow4 = paper.path("M400 200 h140");//M(x y)起始点
+        arrow4.attr({
+            "arrow-start":"diamond-midium-long"//圆点
+
+        });
+
+        var path2 = paper.path("M400 300 L420 360 v40 h60 Z") ;//L(x y)V(x)H(x)Z闭合。
+        path2.attr({
+            "stroke":"green",
+            "stroke-width":2
+        });
+        var path3 = paper.path("M600 300 C600 400 640 420 500 500 C500 500 460 420 480 380 ") ;
+        path3.attr({
+            "stroke":"green",
+            "stroke-width":2
+        });//C(x1 y1 x2 y2 x y)曲线。
+
+
+        var path4 = paper.path("M800 200 S860 230 840 300");//S(x1 y1 x2 y2)光滑的曲线
+        path4.attr({
+            "stroke":"green",
+            "stroke-width":2
+        });
+        var path5 = paper.path("M900 200 T960 230");//S(x1 y1 x2 y2)光滑的曲线
+        path5.attr({
+            "stroke":"green",
+            "stroke-width":2
+        });
+    </script>
+</div>
+</body>
+</html>

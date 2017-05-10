@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画线demo</title>
+</head>
+<script src="raphael.js"></script>
+<style>
+    body, html {
+        width: 100%;
+    }
+
+    #paper {
+        width: 1000px;
+        height: 600px;
+        /*
+                margin-top: 40px;
+                border: solid 4px purple;*/
+    }
+</style>
+<body>
+<div id="paper">
+    <script>
+
+        var paper = Raphael("paper", 1000, 600);
+//        画线，
+        var c = paper.path("M20,20C20,20,40,40,60,60");
+
+        c.attr({
+            "stroke": "red", "stroke-width": 4
+
+        });
+//        创建元素类
+        paper.setStart();
+        var circle1 = paper.circle(20, 20, 10);
+        var circle2 = paper.circle(60, 60, 10);
+//        创建类名
+        var st = paper.setFinish();
+
+//添加类的属性
+        st.attr({
+            "fill": "blue",
+            "stroke": "blue"
+        });
+//        给类添加拖动函数，第一参数为移动的函数
+        st.drag(move, start, end);//   drag函数第一个参数一定是移动的函数。
+        //        move的函数只能这样写。
+
+
+        function move() {
+//改变元素的位置。
+            this.attr({
+                "cx": getMouse().x,
+                "cy": getMouse().y
+            });
+//            console.log(st[0]);
+//            设置曲线
+            var x = st[0].attrs.cx,
+                    y = st[0].attrs.cy,
+                    x3 = st[1].attrs.cx,
+                    y3 = st[1].attrs.cy,
+                    x1 = x + (x3 - x) * 0.4,
+                    y1 = y,
+                    x2 = x3 - (x3 - x) * 0.4,
+                    y2 = y3;
+//曲线函数pp
+            pp(x, y, x1, y1, x2, y2, x3, y3)
+        }
+
+        function start() {
+
+        }
+        function end() {
+
+        }
+        function pp(x, y, x1, y1, x2, y2, x3, y3) {
+
+            var cPath = "M" + x + "," + y + "C" + x1 + "," + y1 + "," + x2 + "," + y2 + "," + x3 + "," + y3;
+
+            c.attr({
+                "path": cPath//线条的属性，为字符串，各数字之间需要有逗号分隔。
+            })
+        }
+
+//        获取鼠标相对于页面的位置
+        function getMouse(event) {
+            var e = event || window.event;
+            return {'x': e.clientX, 'y': e.clientY}
+        }
+    </script>
+</div>
+</body>
+</html>
